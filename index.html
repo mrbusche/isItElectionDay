@@ -45,7 +45,7 @@
     <div style="text-align: center;">
       <h1 style="font-size:48px;">Is it Election Day?</h1>
       <h1 id="isItTime" style="font-size:192px;">No.</h1>
-      <div style="font-size:48px;">
+      <div id="timer" style="font-size:48px;">
         <p class="timer">
           Election day is in <span id="days"></span> Days <span id="hours"></span> Hours <span id="minutes"></span> Minutes
           <span id="seconds"></span> Seconds
@@ -66,30 +66,22 @@
       /></a>
     </footer>
   </body>
-  <script src="https://browser.sentry-cdn.com/4.4.1/bundle.min.js" crossorigin="anonymous"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-61309682-1"></script>
   <script>
-    Sentry.init({ dsn: 'https://6d0ff8cd4f794c26bce2f4627745002c@sentry.io/1341507' });
     window.dataLayer = window.dataLayer || [];
     function gtag() {
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-
     gtag('config', 'UA-61309682-1');
-  </script>
 
-  <script type="text/javascript">
     function countdown(endDate) {
       let days, hours, minutes, seconds;
-
       endDate = new Date(endDate).getTime();
-
       setInterval(calculate, 1000);
 
       function calculate() {
         let startDate = new Date().getTime();
-
         let timeRemaining = parseInt((endDate - startDate) / 1000);
 
         if (timeRemaining >= 0) {
@@ -110,6 +102,7 @@
           document.getElementById('seconds').innerHTML = ('0' + seconds).slice(-2);
         } else {
           document.getElementById('isItTime').textContent = 'Yes!';
+          document.getElementById('timer').remove();
           return;
         }
       }
