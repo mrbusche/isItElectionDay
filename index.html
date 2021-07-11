@@ -81,7 +81,7 @@
       setInterval(calculate, 1000);
 
       function calculate() {
-        let startDate = new Date().getTime();
+        const startDate = new Date().getTime();
         let timeRemaining = parseInt((endDate - startDate) / 1000);
 
         if (timeRemaining >= 0) {
@@ -109,7 +109,12 @@
     }
 
     (function() {
-      countdown('11/03/2020 08:00:00 AM');
+      const today = new Date();
+      if (today <= new Date('11/09/2021')) {
+        countdown('11/08/2022 00:00:00 AM');
+      } else {
+        countdown('11/05/2024 00:00:00 AM');
+      }
     })();
   </script>
 </html>
